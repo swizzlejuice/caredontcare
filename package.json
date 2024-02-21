@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "@react-firebase/auth": "^0.2.10",
+    "firebase": "^10.8.0",
+    "firebaseui": "^6.1.0"
   }
 }
