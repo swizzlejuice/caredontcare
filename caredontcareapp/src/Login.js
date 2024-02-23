@@ -1,6 +1,6 @@
-import React from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import React from 'react';
 
 export function SignupForm() {
   const {
@@ -14,7 +14,7 @@ export function SignupForm() {
     let path = `/profile`; 
     navigate(path);
   }
-
+  
   return (
     <body>
     <div className="login-div">Sign in to continue

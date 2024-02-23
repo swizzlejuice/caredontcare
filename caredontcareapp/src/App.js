@@ -6,7 +6,8 @@ import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } f
 
 import { SignupForm } from './Login.js';
 import { ProfilePage } from './Profile.js';
-
+import { Home } from './Home.js';
+import { KalenDeboer } from './KalenDeboer.js';
 
 export default function App(props) {
   return (
@@ -14,6 +15,8 @@ export default function App(props) {
       <Routes>
         <Route index element={<SignupForm />} />
         <Route path="profile" element={<ProfilePage />} />
+        <Route path="home" element={<Home />} />
+        <Route path="kalen-deboer-forum" element={<KalenDeboer />} />
       </Routes>
     </div>
   );

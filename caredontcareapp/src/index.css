@@ -95,3 +95,66 @@ label {
     margin-left: 2rem;
     margin-top: 1.5rem;
 }
+
+
+/* HOME PAGE */
+.home-card {
+    background-color: white;
+    color: black;
+    margin-left: 1rem;
+    border-radius: .5rem;
+    margin-top: 3rem;
+}
+
+.cards-text {
+    padding: .75rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-sub, .card-desc {
+    font-size: .8rem;
+}
+
+.dc-btn {
+    text-align: center;
+    font-size: 1rem;
+    padding: .7rem;
+    width: 6.5rem;
+    color: white;
+    background-color: #5C5C5C;
+    border: none;
+    border-radius: .25rem;
+    margin-left: 4.5rem;
+}
+
+.c-btn {
+    text-align: center;
+    font-size: 1rem;
+    padding: .7rem;
+    width: 6.5rem;
+    color: white;
+    background-color: #E94560;
+    border: none;
+    border-radius: .25rem;
+    margin-left: 0.5rem;
+    margin-top: .15rem;
+    /* position: fixed; */
+}
+
+.back-icon {
+    width: 35px;
+    margin-top: 2.5rem;
+    margin-left: .75rem;
+}
+
+.post-card {
+    background-color: white;
+    color: black;
+    margin-left: .65rem;
+    border-radius: .5rem;
+    margin-top: 1.5rem;
+}
