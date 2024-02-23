@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from './Nav.js';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 class CardOne extends React.Component {
     state = {
@@ -15,6 +15,7 @@ class CardOne extends React.Component {
                     <div>
                     <Card className="home-card" style={{ width: '21rem'}}>
                         <Card.Body className="cards-text">
+                        <Card.Img className="card-img" variant="top" src="img/image1.png" />
                             <Card.Title className="card-title">Seattle shelter for Native people set to close as U.S. hits highest reported level of homelessness</Card.Title>
                             <Card.Subtitle className="card-sub">NBC News | 12/22/2023</Card.Subtitle>
                             <Card.Text className="card-desc">
@@ -46,6 +47,7 @@ class CardTwo extends React.Component {
                     <div>
                     <Card className="home-card" style={{ width: '21rem'}}>
                         <Card.Body className="cards-text">
+                        <Card.Img className="card-img" variant="top" src="img/image2.png" />
                             <Card.Title className="card-title">Washington's Kalen DeBoer named AP Coach of the Year</Card.Title>
                             <Card.Subtitle className="card-sub">ESPN Sports | 12/19/2023</Card.Subtitle>
                             <Card.Text className="card-desc">
@@ -60,6 +62,7 @@ class CardTwo extends React.Component {
                     <Link to="/kalen-deboer-forum"><button className="c-btn">Care</button></Link>
                     </div>
                 )}
+                <div className="home-padding"></div>
             </div>  
         )
     }

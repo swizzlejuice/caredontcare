@@ -128,7 +128,7 @@ label {
     background-color: #5C5C5C;
     border: none;
     border-radius: .25rem;
-    margin-left: 4.5rem;
+    margin-left: 4.675rem;
 }
 
 .c-btn {
@@ -157,4 +157,14 @@ label {
     margin-left: .65rem;
     border-radius: .5rem;
     margin-top: 1.5rem;
+}
+
+.card-img {
+    width: 21rem;
+    margin-left: -.75rem;
+    margin-top: -.75rem;
+}
+
+.home-padding {
+    padding-bottom: 5rem;
 }
