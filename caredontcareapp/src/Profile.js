@@ -7,7 +7,7 @@ export function ProfilePage() {
         <body>
             <div>
                 <Nav />
-                <p className="profile-name">clarabelle</p>
+                <p className="profile-posts">Posts I Care About</p>
             </div>
         </body>
     );
