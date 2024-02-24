@@ -1,24 +1,30 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React from 'react';
 
 export function SignupForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }, setError } = useForm();
+  const navigate = useNavigate();
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/profile`; 
-    navigate(path);
-  }
+  const onSubmit = async (data) => {
+    const auth = getAuth();
+
+    try {
+      console.log(`Attempting to sign in with email: ${data.email}`); // Log the email
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      navigate('/home');
+    } catch (error) {
+      console.error('Error logging in:', error.message);
+      setError('firebase', { message: `Error logging in: ${error.code}` });
+    }
+  };
+
   
   return (
     <body>
     <div className="login-div">Sign in to continue
-      <form className="login-form" onSubmit={handleSubmit(routeChange)}>
+      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="email-div">
           <label htmlFor="email">UW Email:</label>
           <input
@@ -27,8 +33,8 @@ export function SignupForm() {
             {...register("email", {
               required: "Email is required",
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Must be a valid UW email"
+                value: /^[A-Z0-9._%+-]+@uw\.edu$/i,
+                message: "Email must end with @uw.edu"
               }
             })}
           />
@@ -52,6 +58,7 @@ export function SignupForm() {
         </div>
 
         <button className="login-btn" type="submit">Sign in</button>
+        {errors.firebase && <span className="login-error">{errors.firebase.message}</span>}
       </form>
     </div>
     </body>

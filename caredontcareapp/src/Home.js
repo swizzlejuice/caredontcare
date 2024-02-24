@@ -2,13 +2,31 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from './Nav.js';
 import { Card } from 'react-bootstrap';
+import { getDatabase, ref, set } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 class CardOne extends React.Component {
     state = {
         showDiv: true
     }
+
+    handleCare = (postId) => {
+        const userId = getAuth().currentUser?.uid; // Use optional chaining in case currentUser is null
+        if (!userId) {
+          alert("Please log in to care about posts.");
+          return;
+        }
+        const db = getDatabase();
+        set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
+          .then(() => alert("You cared about this post."))
+          .catch((error) => console.error("Error caring for post:", error));
+    };
+    
     render() {
-        const { showDiv } = this.state
+        const { showDiv } = this.state;
+        // Assuming a static postId for demonstration; replace with actual dynamic postId in a real app
+        const postId = "cardOnePostId";
+        
         return (
             <div>
                 { showDiv && (
@@ -27,7 +45,8 @@ class CardOne extends React.Component {
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
-                    <button className="c-btn">Care</button>
+                    {/* Connect this button to the handleCare function */}
+                    <button className="c-btn" onClick={() => this.handleCare(postId)}>Care</button>
                     </div>
                 )}
             </div>  
@@ -39,6 +58,20 @@ class CardTwo extends React.Component {
     state = {
         showDiv: true
     }
+
+    handleCare = (postId) => {
+        const userId = getAuth().currentUser?.uid;
+        if (!userId) {
+          alert("Please log in to care about posts.");
+          return;
+        }
+        const db = getDatabase();
+        set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
+          .then(() => alert("You cared about this post."))
+          .catch((error) => console.error("Error caring for post:", error));
+    };
+
+    
     render() {
         const { showDiv } = this.state
         return (

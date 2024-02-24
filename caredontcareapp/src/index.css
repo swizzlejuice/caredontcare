@@ -97,6 +97,107 @@ label {
 }
 
 
+/* PROFILE PAGE - Sub components start */
+/* UserInfo Styles */
+.user-info {
+    text-align: center;
+    color: white; 
+    margin: 2rem auto; /* Adjust as needed for layout */
+}
+
+.profile-picture {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust to maintain aspect ratio */
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* If you want to make sure the image covers the area without stretching */
+    margin-bottom: 1rem;
+}
+
+.username {
+    color: white;
+    font-size: 1.5rem; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.bio {
+    font-size: 1rem; /* Adjust as needed */
+    margin-bottom: 1rem;
+    color: white
+}
+
+.edit-profile-button {
+    background-color: #E94560; /* Your brand color for the button */
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem; /* Adjust as needed */
+    border-radius: 20px; /* Rounded corners for the button */
+    font-size: 1rem;
+}
+
+/* TopicsOfInterest Styles */
+.topics-of-interest {
+    display: flex;
+    justify-content: center; /* Align buttons in the center */
+    flex-wrap: wrap; /* Allow wrap if too many topics */
+    margin: 1rem 0;
+}
+
+.topic-button {
+    background-color: #343a40; /* Bootstrap's secondary button color */
+    color: white;
+    margin: 0.25rem;
+    border-radius: 20px; /* Rounded corners for the topic buttons */
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem; /* Adjust as needed */
+}
+
+/* CaredByMe Styles */
+.cared-by-me {
+    color: white;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.cared-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the size as needed */
+    gap: 10px; /* Space between items */
+}
+
+.cared-item {
+    background: white;
+    border-radius: 8px; /* Rounded corners for each item */
+    overflow: hidden; /* Ensures content fits within the borders */
+    cursor: pointer; /* Indicates the item is clickable */
+    transition: transform 0.3s ease; /* Smooth transform effect on hover */
+}
+
+.cared-item:hover {
+    transform: scale(1.05); /* Slightly enlarge the item on hover */
+}
+
+.cared-item img {
+    width: 100%; /* Ensure the image covers the item width */
+    display: block;
+}
+
+.post-info {
+    padding: 0.5rem; /* Padding inside the item */
+}
+
+.post-title {
+    font-weight: bold; /* Bold title */
+}
+
+.post-date {
+    font-size: 0.8rem; /* Smaller text for the date */
+}
+
+/* PROFILE PAGE - Sub components end */
+
+
 /* HOME PAGE */
 .home-card {
     background-color: white;
@@ -168,3 +269,4 @@ label {
 .home-padding {
     padding-bottom: 5rem;
 }
+

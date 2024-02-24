@@ -13,7 +13,7 @@ export default function App(props) {
   return (
     <div>
       <Routes>
-        <Route index element={<SignupForm />} />
+        <Route path="/"index element={<SignupForm />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="home" element={<Home />} />
         <Route path="kalen-deboer-forum" element={<KalenDeboer />} />
