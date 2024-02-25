@@ -89,14 +89,6 @@ label {
 }
 
 
-/* PROFILE PAGE */
-.profile-posts {
-    color: white;
-    margin-left: 1rem;
-    margin-top: 1.5rem;
-}
-
-
 /* PROFILE PAGE - Sub components start */
 /* UserInfo Styles */
 .user-info {
@@ -195,14 +187,12 @@ label {
     font-size: 0.8rem; /* Smaller text for the date */
 }
 
-/* PROFILE PAGE - Sub components end */
-
 
 /* HOME PAGE */
 .home-card {
     background-color: white;
     color: black;
-    margin-left: 1rem;
+    margin-left: 1.215rem;
     border-radius: .5rem;
     margin-top: 3rem;
 }
@@ -229,7 +219,7 @@ label {
     background-color: #5C5C5C;
     border: none;
     border-radius: .25rem;
-    margin-left: 4.675rem;
+    margin-left: 4.8rem;
 }
 
 .c-btn {
@@ -270,3 +260,10 @@ label {
     padding-bottom: 5rem;
 }
 
+.three-card-img {
+    width: 21rem;
+    margin-left: -.75rem;
+    margin-top: -.75rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}

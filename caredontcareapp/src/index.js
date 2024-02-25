@@ -28,6 +28,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 export { database };
 export const auth = getAuth(app);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -1,13 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import './index.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue } from 'firebase/database';
+import { Routes, Route } from 'react-router-dom';
 
 import { SignupForm } from './Login.js';
 import { ProfilePage } from './Profile.js';
 import { Home } from './Home.js';
 import { KalenDeboer } from './KalenDeboer.js';
+import { HumaneSociety } from './HumaneSociety.js';
 
 export default function App(props) {
   return (
@@ -16,7 +15,8 @@ export default function App(props) {
         <Route path="/"index element={<SignupForm />} />
         <Route path="profile" element={<ProfilePage />} />
         <Route path="home" element={<Home />} />
-        <Route path="kalen-deboer-forum" element={<KalenDeboer />} />
+        <Route path="kalen-deboer-post" element={<KalenDeboer />} />
+        <Route path="humane-society-post" element={<HumaneSociety />} />
       </Routes>
     </div>
   );

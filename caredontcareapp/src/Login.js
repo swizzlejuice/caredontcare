@@ -34,7 +34,7 @@ export function SignupForm() {
               required: "Email is required",
               pattern: {
                 value: /^[A-Z0-9._%+-]+@uw\.edu$/i,
-                message: "Email must end with @uw.edu"
+                message: "Must be a valid UW email"
               }
             })}
           />
