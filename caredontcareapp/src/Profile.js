@@ -4,10 +4,55 @@ import { getDatabase, ref, get } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import './index.css'; // Ensure your CSS file is imported
 
 export function ProfilePage() {
     const [showModal, setShowModal] = useState(false); // Add state to control the modal visibility
+    const [postDetails, setPostDetails] = useState([]); // State to hold the cared posts
     
+    useEffect(() => {
+        const fetchCaredPosts = async () => {
+            try {
+                const userId = getAuth().currentUser?.uid;
+                if (!userId) {
+                    console.log('No user is currently logged in.');
+                    return;
+                }
+                const db = getDatabase();
+                const likedPostsRef = ref(db, `users/${userId}/likedPosts`);
+                const likedPostsSnapshot = await get(likedPostsRef);
+    
+                if (likedPostsSnapshot.exists()) {
+                    const likedPostsIds = Object.keys(likedPostsSnapshot.val());
+                    console.log(`Liked posts IDs: ${likedPostsIds.join(', ')}`);
+    
+                    const postsPromises = likedPostsIds.map(async (postId) => {
+                        const postRef = ref(db, `posts/${postId}`);
+                        const postSnapshot = await get(postRef);
+                        if (postSnapshot.exists()) {
+                            console.log(`Fetched post: ${postId}`);
+                            return postSnapshot.val();
+                        } else {
+                            console.log(`Post not found: ${postId}`);
+                            return null;
+                        }
+                    });
+    
+                    const posts = await Promise.all(postsPromises);
+                    console.log('Fetched posts details:', posts);
+                    setPostDetails(posts.filter(post => post !== null)); // Filter out null values
+                } else {
+                    console.log("No cared posts found.");
+                    setPostDetails([]);
+                }
+            } catch (error) {
+                console.error("Error fetching cared posts:", error);
+            }
+        };
+    
+        fetchCaredPosts();
+    }, []);
+
     return (
         <>
             <Nav />
@@ -16,8 +61,8 @@ export function ProfilePage() {
                     <Col md={8}>
                         <UserInfo />
                         <TopicsOfInterest />
-                        <Button variant="primary" onClick={() => setShowModal(true)}>Show Cared Posts</Button> {/* Add button to show modal */}
-                        <CaredByMe showModal={showModal} setShowModal={setShowModal} /> {/* Pass showModal and setShowModal to the CaredByMe component */}
+                        <Button variant="primary" onClick={() => setShowModal(true)}>Show Cared Posts</Button>
+                        <CaredByMe showModal={showModal} setShowModal={setShowModal} postDetails={postDetails} />
                     </Col>
                 </Row>
             </Container>
@@ -32,7 +77,7 @@ const UserInfo = () => {
 
     console.log(username, bio);
 
-    // Removed console.log for production, it's good practice to remove console logs that are used for debugging
+    
 
     return (
         <div className="text-center my-4">
@@ -59,65 +104,34 @@ const TopicsOfInterest = () => {
     );
 };
 
-const CaredByMe = ({ showModal, setShowModal }) => {
-
-    // ... existing useEffect to fetch posts details
-    const [postDetails, setPostDetails] = useState([]);
-    useEffect(() => {
-        const fetchPostsDetails = async () => {
-            const userId = getAuth().currentUser?.uid;
-            if (userId) {
-                const db = getDatabase();
-                const likedPostsRef = ref(db, `users/${userId}/likedPosts`);
-    
-                const snapshot = await get(likedPostsRef);
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    const postsPromises = Object.keys(data)
-                        .filter(postId => data[postId] === true)
-                        .map(async (postId) => {
-                            const postSnapshot = await get(ref(db, `posts/${postId}`));
-                            if (postSnapshot.exists()) {
-                                return { id: postId, ...postSnapshot.val() };
-                            }
-                            return null;
-                        });
-    
-                    const posts = await Promise.all(postsPromises);
-                    setPostDetails(posts.filter(post => post !== null)); // Filter out null values
-                } else {
-                    console.log("No liked posts found.");
-                    setPostDetails([]);
-                }
-            }
-        };
-
-        fetchPostsDetails();
-    }, []);
-
+const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
     return (
         <>
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>Cared by me</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {postDetails.length > 0 ? (
-                        postDetails.map((post, index) => (
-                            <Card key={index} className="mb-3">
-                                <Card.Body>
-                                    <Card.Title>{post.title}</Card.Title>
-                                    {/* Additional post details can be displayed here */}
-                                </Card.Body>
-                            </Card>
-                        ))
+                        <div className="cared-posts-grid">
+                            {postDetails.map((post, index) => (
+                                <Card key={index} className="cared-post-card">
+                                    <Card.Img variant="top" src={post.imageUrl || 'img/default-image.png'} />
+                                    <Card.Body>
+                                        <Card.Title>{post.title}</Card.Title>
+                                        <Card.Text>{post.description}</Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="text-muted">Cared on {post.subtitle.split(' | ')[1]}</small>
+                                    </Card.Footer>
+                                </Card>
+                            ))}
+                        </div>
                     ) : (
-                        <p>You haven't liked any posts yet.</p>
+                        <p className="text-center">You haven't liked any posts yet.</p>
                     )}
                 </Modal.Body>
             </Modal>
         </>
     );
 };
-
-

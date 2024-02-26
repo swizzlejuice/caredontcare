@@ -5,27 +5,27 @@ import { Card } from 'react-bootstrap';
 import { getDatabase, ref, set } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
+function handleCare(postId) {
+    const userId = getAuth().currentUser?.uid; 
+    if (!userId) {
+      alert("Please log in to care about posts.");
+      return;
+    }
+    const db = getDatabase();
+    set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
+      .then(() => alert("You cared about this post."))
+      .catch((error) => console.error("Error caring for post:", error));
+  }
+  
+
 class CardOne extends React.Component {
     state = {
         showDiv: true
     }
-
-    handleCare = (postId) => {
-        const userId = getAuth().currentUser?.uid; // Use optional chaining in case currentUser is null
-        if (!userId) {
-          alert("Please log in to care about posts.");
-          return;
-        }
-        const db = getDatabase();
-        set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
-          .then(() => alert("You cared about this post."))
-          .catch((error) => console.error("Error caring for post:", error));
-    };
     
     render() {
         const { showDiv } = this.state;
-        // Assuming a static postId for demonstration; replace with actual dynamic postId in a real app
-        const postId = "cardOnePostId";
+
         
         return (
             <div>
@@ -46,7 +46,7 @@ class CardOne extends React.Component {
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
                     {/* Connect this button to the handleCare function */}
-                    <button className="c-btn" onClick={() => this.handleCare(postId)}>Care</button>
+                    <button className="c-btn" onClick={() => handleCare("cardOnePostId")}>Care</button>
                     </div>
                 )}
             </div>  
@@ -59,22 +59,12 @@ class CardTwo extends React.Component {
         showDiv: true
     }
 
-    handleCare = (postId) => {
-        const userId = getAuth().currentUser?.uid;
-        if (!userId) {
-          alert("Please log in to care about posts.");
-          return;
-        }
-        const db = getDatabase();
-        set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
-          .then(() => alert("You cared about this post."))
-          .catch((error) => console.error("Error caring for post:", error));
-    };
+
 
     
     render() {
         const { showDiv } = this.state
-        const postId = "cardTwoPostId";
+
         return (
             <div>
                 { showDiv && (
@@ -94,7 +84,7 @@ class CardTwo extends React.Component {
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
                     {/* <Link to="/kalen-deboer-forum"><button className="c-btn">Care</button></Link> */}
-                    <button className="c-btn" onClick={() => this.handleCare(postId)}>Care</button>
+                    <button className="c-btn" onClick={() => handleCare("cardTwoPostId")}>Care</button>
                     </div>
                 )}
             </div>  
@@ -107,22 +97,12 @@ class CardThree extends React.Component {
         showDiv: true
     }
 
-    handleCare = (postId) => {
-        const userId = getAuth().currentUser?.uid;
-        if (!userId) {
-          alert("Please log in to care about posts.");
-          return;
-        }
-        const db = getDatabase();
-        set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
-          .then(() => alert("You cared about this post."))
-          .catch((error) => console.error("Error caring for post:", error));
-    };
+
 
     
     render() {
         const { showDiv } = this.state
-        const postId = "cardThreePostId";
+
         return (
             <div>
                 { showDiv && (
@@ -142,7 +122,8 @@ class CardThree extends React.Component {
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
-                    <button className="c-btn" onClick={() => this.handleCare(postId)}>Care</button>
+                    <button className="c-btn" onClick={() => handleCare("cardThreePostId")}>Care</button>
+
                     </div>
                 )}
             </div>  

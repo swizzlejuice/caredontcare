@@ -187,6 +187,67 @@ label {
     font-size: 0.8rem; /* Smaller text for the date */
 }
 
+/* PROFILE PAGE - Cared/Liked Posts subsection in red*/
+/* Modal and Cared Posts Grid */
+.modal-lg .modal-content {
+    background-color: black; /* Set the modal background to match your theme */
+    color: white;
+}
+
+.cared-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem; /* Add some space above the grid */
+}
+
+.cared-post-card {
+    background-color: #1c1c1e; /* Adjust the background color as needed */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden; /* Ensures content fits within the borders */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cared-post-card img {
+    object-fit: cover;
+    height: 200px; /* Set a fixed height or use aspect ratio to control image height */
+    width: 100%;
+}
+
+.cared-post-card .card-body {
+    padding: 0.75rem;
+}
+
+.cared-post-card .card-title {
+    font-size: 1rem; /* Adjust as needed */
+    margin-bottom: 0.5rem;
+}
+
+.cared-post-card .card-text {
+    font-size: 0.8rem; /* Smaller text for card text */
+}
+
+.cared-post-card .card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding: 0.5rem 0.75rem;
+}
+
+.cared-post-card .text-muted {
+    font-size: 0.7rem; /* Smaller text for the date */
+    color: #b3b3b3; /* Light grey color for muted text */
+}
+
+.red-background {
+    background-color: #ff0000; /* Or any red shade you prefer */
+    /* Add other styling as needed to match your Figma design */
+}
+
+/* PROFILE PAGE - Sub components end*/
 
 /* HOME PAGE */
 .home-card {
