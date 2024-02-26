@@ -4,7 +4,7 @@ import { getDatabase, ref, get } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import './index.css'; // Ensure your CSS file is imported
+import './index.css'; 
 
 export function ProfilePage() {
     const [showModal, setShowModal] = useState(false); // Add state to control the modal visibility
@@ -84,7 +84,7 @@ const UserInfo = () => {
             {/* The Image component has been removed */}
             <h3 className="username">{username}</h3> {/* Removed the "@" since it's already part of the username */}
             <p className="bio">{bio}</p>
-            <Button variant="primary" className="edit-profile-button">Edit Profile</Button>
+            {/* <Button variant="primary" className="edit-profile-button">Edit Profile</Button> */}
         </div>
     );
 };
