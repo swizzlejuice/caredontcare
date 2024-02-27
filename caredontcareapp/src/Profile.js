@@ -1,6 +1,6 @@
 import { Nav } from './Nav.js';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, onValue } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
@@ -12,45 +12,51 @@ export function ProfilePage() {
     
     useEffect(() => {
         const fetchCaredPosts = async () => {
-            try {
-                const userId = getAuth().currentUser?.uid;
-                if (!userId) {
-                    console.log('No user is currently logged in.');
-                    return;
-                }
-                const db = getDatabase();
-                const likedPostsRef = ref(db, `users/${userId}/likedPosts`);
-                const likedPostsSnapshot = await get(likedPostsRef);
+            const userId = getAuth().currentUser?.uid;
+            if (!userId) {
+                console.log('No user is currently logged in.');
+                return;
+            }
+            const db = getDatabase();
+            const likedPostsRef = ref(db, `users/${userId}/likedPosts`);
+            const likedPostsSnapshot = await get(likedPostsRef);
     
-                if (likedPostsSnapshot.exists()) {
-                    const likedPostsIds = Object.keys(likedPostsSnapshot.val());
-                    console.log(`Liked posts IDs: ${likedPostsIds.join(', ')}`);
+            // Debugging logs
+            console.log('Liked Posts Snapshot Data:', likedPostsSnapshot.val());
     
-                    const postsPromises = likedPostsIds.map(async (postId) => {
-                        const postRef = ref(db, `posts/${postId}`);
-                        const postSnapshot = await get(postRef);
-                        if (postSnapshot.exists()) {
-                            console.log(`Fetched post: ${postId}`);
-                            return postSnapshot.val();
-                        } else {
-                            console.log(`Post not found: ${postId}`);
-                            return null;
-                        }
-                    });
+            if (likedPostsSnapshot.exists()) {
+                const likedPostsIds = Object.keys(likedPostsSnapshot.val()).filter(key => likedPostsSnapshot.val()[key] === true);
     
-                    const posts = await Promise.all(postsPromises);
-                    console.log('Fetched posts details:', posts);
-                    setPostDetails(posts.filter(post => post !== null)); // Filter out null values
-                } else {
-                    console.log("No cared posts found.");
-                    setPostDetails([]);
-                }
-            } catch (error) {
-                console.error("Error fetching cared posts:", error);
+                // Debugging logs
+                console.log('Filtered Liked Posts IDs:', likedPostsIds);
+    
+                const postsPromises = likedPostsIds.map(async (postId) => {
+                    const postRef = ref(db, `posts/${postId}`);
+                    const postSnapshot = await get(postRef);
+    
+                    // Debugging logs
+                    console.log(`Data for post ${postId}:`, postSnapshot.val());
+    
+                    if (postSnapshot.exists()) {
+                        return { id: postId, ...postSnapshot.val() };
+                    }
+                    return null;
+                });
+    
+                const posts = (await Promise.all(postsPromises)).filter(post => post !== null);
+    
+                // Debugging logs
+                console.log('Final posts array:', posts);
+    
+                setPostDetails(posts);
+            } else {
+                console.log("No cared posts found.");
+                setPostDetails([]);
             }
         };
     
         fetchCaredPosts();
+        // If you add any dependencies here, make sure they are stable and won't cause unnecessary re-renders.
     }, []);
 
     return (
@@ -60,7 +66,7 @@ export function ProfilePage() {
                 <Row className="justify-content-center">
                     <Col md={8}>
                         <UserInfo />
-                        <TopicsOfInterest />
+                        
                         <Button variant="primary" onClick={() => setShowModal(true)}>Show Cared Posts</Button>
                         <CaredByMe showModal={showModal} setShowModal={setShowModal} postDetails={postDetails} />
                     </Col>

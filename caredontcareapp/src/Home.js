@@ -1,22 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react'; // Correctly import Component
+
 import { Link } from 'react-router-dom';
 import { Nav } from './Nav.js';
 import { Card } from 'react-bootstrap';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, runTransaction } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
-function handleCare(postId) {
-    const userId = getAuth().currentUser?.uid; 
-    if (!userId) {
-      alert("Please log in to care about posts.");
-      return;
-    }
-    const db = getDatabase();
-    set(ref(db, `users/${userId}/likedPosts/${postId}`), true)
-      .then(() => alert("You cared about this post."))
-      .catch((error) => console.error("Error caring for post:", error));
-  }
-  
 
 class CardOne extends React.Component {
     state = {
@@ -25,7 +14,7 @@ class CardOne extends React.Component {
     
     render() {
         const { showDiv } = this.state;
-
+        const isLiked = this.props.likedPosts.cardOnePostId;
         
         return (
             <div>
@@ -46,7 +35,7 @@ class CardOne extends React.Component {
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
                     {/* Connect this button to the handleCare function */}
-                    <button className="c-btn" onClick={() => handleCare("cardOnePostId")}>Care</button>
+                    <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
                     </div>
                 )}
             </div>  
@@ -64,6 +53,8 @@ class CardTwo extends React.Component {
     
     render() {
         const { showDiv } = this.state
+        const isLiked = this.props.likedPosts.cardTwoPostId;
+
 
         return (
             <div>
@@ -84,7 +75,9 @@ class CardTwo extends React.Component {
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
                     {/* <Link to="/kalen-deboer-forum"><button className="c-btn">Care</button></Link> */}
-                    <button className="c-btn" onClick={() => handleCare("cardTwoPostId")}>Care</button>
+                    <button className="c-btn" onClick={() => this.props.handleCare("cardTwoPostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+
+
                     </div>
                 )}
             </div>  
@@ -97,11 +90,9 @@ class CardThree extends React.Component {
         showDiv: true
     }
 
-
-
-    
     render() {
         const { showDiv } = this.state
+        const isLiked = this.props.likedPosts.cardThreePostId;
 
         return (
             <div>
@@ -122,7 +113,8 @@ class CardThree extends React.Component {
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
                         { showDiv ? "Don't Care" : "Undo" }
                     </button>
-                    <button className="c-btn" onClick={() => handleCare("cardThreePostId")}>Care</button>
+
+                    <button className="c-btn" onClick={() => this.props.handleCare("cardThreePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
 
                     </div>
                 )}
@@ -131,14 +123,73 @@ class CardThree extends React.Component {
     }
 }
 
-export function Home() {
-    return (
-      <div>
-        <Nav />
-        <CardOne />
-        <CardTwo />
-        <CardThree />
-        <div className="home-padding"></div>
-      </div>
-    );
-  }
+export class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notification: '', // State to hold the notification message
+            likedPosts: {
+                cardOnePostId: false,
+                cardTwoPostId: false,
+                cardThreePostId: false,
+              }, // Initialize your local likedPosts state here  
+        };
+        this.handleCare = this.handleCare.bind(this);
+    }
+
+    // Method to show notification
+    showNotification = (message) => {
+        this.setState({ notification: message });
+        setTimeout(() => this.setState({ notification: '' }), 3000); // Clear the notification after 3 seconds
+    }
+
+    handleCare = (postId) => {
+        const userId = getAuth().currentUser?.uid;
+        if (!userId) {
+            this.showNotification("Please log in to care about posts.");
+            return;
+        }
+
+        this.setState(prevState => ({
+            likedPosts: {
+              ...prevState.likedPosts,
+              [postId]: !prevState.likedPosts[postId], // Toggle the liked status for the specific postId
+            }
+        }));
+
+        const db = getDatabase();
+        const postRef = ref(db, `users/${userId}/likedPosts/${postId}`);
+
+        runTransaction(postRef, (currentValue) => {
+            if (currentValue === null || currentValue === false) {
+                return true; // If it's not set or false, like the post
+            } else {
+                return false; // If it's true, unlike the post
+            }
+        }).then(() => {
+            this.showNotification("Post care status updated.");
+        }).catch((error) => {
+            console.error("Error updating care status:", error);
+            this.showNotification("Failed to update care status.");
+        });
+    }
+
+    render() {
+        const { notification, likedPosts } = this.state;
+
+        return (
+            <div>
+                <Nav />
+                {notification && (
+                    <div style={{ position: 'fixed', bottom: 20, right: 20, backgroundColor: 'lightgreen', padding: 10, borderRadius: 5 }}>
+                        {notification}
+                    </div>
+                )}
+                <CardOne handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts} />
+                <CardTwo handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
+                <CardThree handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
+                <div className="home-padding"></div>
+            </div>
+        );
+    }
+}
