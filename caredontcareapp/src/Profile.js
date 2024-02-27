@@ -66,9 +66,8 @@ export function ProfilePage() {
                 <Row className="justify-content-center">
                     <Col md={8}>
                         <UserInfo />
-                        
-                        <Button variant="primary" onClick={() => setShowModal(true)}>Show Cared Posts</Button>
-                        <CaredByMe showModal={showModal} setShowModal={setShowModal} postDetails={postDetails} />
+                        <Button className="modal-btn" variant="primary" onClick={() => setShowModal(true)}>Show Cared Posts</Button>
+                        <CaredByMe showModal={showModal} setShowModal={setShowModal} postDetails={postDetails}/>
                     </Col>
                 </Row>
             </Container>
@@ -83,45 +82,44 @@ const UserInfo = () => {
 
     console.log(username, bio);
 
-    
-
     return (
         <div className="text-center my-4">
             {/* The Image component has been removed */}
+            <img className="prof-img" src="img/woman.png" alt="profile icon"/>
             <h3 className="username">{username}</h3> {/* Removed the "@" since it's already part of the username */}
-            <p className="bio">{bio}</p>
+            {/* <p className="bio">{bio}</p> */}
             {/* <Button variant="primary" className="edit-profile-button">Edit Profile</Button> */}
         </div>
     );
 };
 
-const TopicsOfInterest = () => {
-    // Example topics
-    const topics = ["Sports", "Local News", "Neuroscience"];
+// const TopicsOfInterest = () => {
+//     // Example topics
+//     const topics = ["Sports", "Local News", "Neuroscience"];
 
-    return (
-        <div className="my-4">
-            {topics.map((topic, index) => (
-                <Button key={index} variant="outline-secondary" className="m-1">
-                    {topic}
-                </Button>
-            ))}
-        </div>
-    );
-};
+//     return (
+//         <div className="my-4">
+//             {topics.map((topic, index) => (
+//                 <Button key={index} variant="outline-secondary" className="m-1">
+//                     {topic}
+//                 </Button>
+//             ))}
+//         </div>
+//     );
+// };
 
 const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
     return (
         <>
             <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
-                <Modal.Header closeButton>
-                    <Modal.Title>Cared by me</Modal.Title>
+                <Modal.Header closeButton className='cared-by-me-btn'>
+                    {/* <Modal.Title>Cared by me</Modal.Title> */}
                 </Modal.Header>
                 <Modal.Body>
                     {postDetails.length > 0 ? (
                         <div className="cared-posts-grid">
                             {postDetails.map((post, index) => (
-                                <Card key={index} className="cared-post-card">
+                                <Card key={index} className="cared-post-card" style={{ width: '18rem', height: '16rem'}}>
                                     <Card.Img variant="top" src={post.imageUrl || 'img/default-image.png'} />
                                     <Card.Body>
                                         <Card.Title>{post.title}</Card.Title>

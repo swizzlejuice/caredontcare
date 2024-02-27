@@ -47,9 +47,6 @@ class CardTwo extends React.Component {
     state = {
         showDiv: true
     }
-
-
-
     
     render() {
         const { showDiv } = this.state
