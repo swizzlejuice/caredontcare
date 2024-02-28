@@ -84,11 +84,9 @@ const UserInfo = () => {
 
     return (
         <div className="text-center my-4">
-            {/* The Image component has been removed */}
             <img className="prof-img" src="img/woman.png" alt="profile icon"/>
-            <h3 className="username">{username}</h3> {/* Removed the "@" since it's already part of the username */}
+            <h3 className="username">{username}<Button variant="primary" className="edit-profile-button">Edit Profile</Button></h3> {/* Removed the "@" since it's already part of the username */}
             {/* <p className="bio">{bio}</p> */}
-            {/* <Button variant="primary" className="edit-profile-button">Edit Profile</Button> */}
         </div>
     );
 };
@@ -123,16 +121,16 @@ const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
                                     <Card.Img variant="top" src={post.imageUrl || 'img/default-image.png'} />
                                     <Card.Body>
                                         <Card.Title>{post.title}</Card.Title>
-                                        <Card.Text>{post.description}</Card.Text>
+                                        {/* <Card.Text>{post.description}</Card.Text> */}
                                     </Card.Body>
-                                    <Card.Footer>
+                                    {/* <Card.Footer>
                                         <small className="text-muted">Cared on {post.subtitle.split(' | ')[1]}</small>
-                                    </Card.Footer>
+                                    </Card.Footer> */}
                                 </Card>
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center">You haven't liked any posts yet.</p>
+                        <p className="text-cent">You haven't cared about any posts yet.</p>
                     )}
                 </Modal.Body>
             </Modal>

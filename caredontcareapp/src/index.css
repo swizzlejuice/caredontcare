@@ -94,20 +94,20 @@ label {
 .user-info {
     text-align: center;
     color: white; 
-    margin: 2rem auto; /* Adjust as needed for layout */
+    margin: 2rem auto; 
 }
 
 .profile-picture {
-    width: 100px; /* Adjust as needed */
-    height: 100px; /* Adjust to maintain aspect ratio */
-    border-radius: 50%; /* Make the image round */
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
     object-fit: cover; /* If you want to make sure the image covers the area without stretching */
     margin-bottom: 1rem;
 }
 
 .username {
     color: white;
-    font-size: 1.5rem; /* Adjust as needed */
+    font-size: 1.5rem; 
     font-weight: bold;
     margin-bottom: 0.5rem;
     text-align: center;
@@ -115,7 +115,7 @@ label {
 }
 
 .bio {
-    font-size: 1rem; /* Adjust as needed */
+    font-size: 1rem; 
     margin-bottom: 1rem;
     color: white;
     text-align: center;
@@ -123,29 +123,30 @@ label {
 }
 
 .edit-profile-button {
-    background-color: #E94560; /* Your brand color for the button */
+    background-color: #5C5C5C;
     border: none;
     color: white;
-    padding: 0.5rem 1rem; /* Adjust as needed */
-    border-radius: 20px; /* Rounded corners for the button */
-    font-size: 1rem;
+    padding: .5rem .75rem; 
+    border-radius: 15px; 
+    font-size: .75rem;
+    margin-left: 1rem;
 }
 
 /* TopicsOfInterest Styles */
 .topics-of-interest {
     display: flex;
-    justify-content: center; /* Align buttons in the center */
-    flex-wrap: wrap; /* Allow wrap if too many topics */
+    justify-content: center; 
+    flex-wrap: wrap; 
     margin: 1rem 0;
 }
 
 .topic-button {
-    background-color: #343a40; /* Bootstrap's secondary button color */
+    background-color: #343a40; 
     color: white;
     margin: 0.25rem;
-    border-radius: 20px; /* Rounded corners for the topic buttons */
+    border-radius: 20px; 
     font-size: 0.9rem;
-    padding: 0.5rem 1rem; /* Adjust as needed */
+    padding: 0.5rem 1rem; 
 }
 
 /* CaredByMe Styles */
@@ -153,19 +154,19 @@ label {
     color: white;
     margin-top: 2rem;
     padding: 1rem;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px; 
 }
 
 .cared-items-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust the size as needed */
-    gap: 10px; /* Space between items */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 10px; 
 }
 
 .cared-item {
     background: white;
-    border-radius: 8px; /* Rounded corners for each item */
-    overflow: hidden; /* Ensures content fits within the borders */
+    border-radius: 8px; 
+    overflow: hidden; 
     cursor: pointer; /* Indicates the item is clickable */
     transition: transform 0.3s ease; /* Smooth transform effect on hover */
 }
@@ -175,26 +176,26 @@ label {
 }
 
 .cared-item img {
-    width: 100%; /* Ensure the image covers the item width */
+    width: 100%; 
     display: block;
 }
 
 .post-info {
-    padding: 0.5rem; /* Padding inside the item */
+    padding: 0.5rem; 
 }
 
 .post-title {
-    font-weight: bold; /* Bold title */
+    font-weight: bold; 
 }
 
 .post-date {
-    font-size: 0.8rem; /* Smaller text for the date */
+    font-size: 0.8rem; 
 }
 
-/* PROFILE PAGE - Cared/Liked Posts subsection in red*/
+/* PROFILE PAGE - Cared/Liked Posts subsection in red */
 /* Modal and Cared Posts Grid */
 .modal-lg .modal-content {
-    background-color: black; /* Set the modal background to match your theme */
+    background-color: black; 
     color: white;
 }
 
@@ -211,7 +212,7 @@ label {
 .prof-img {
     width: 100px;
     margin-left: 9rem;
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
     margin-bottom: -2.75rem;
 }
 
@@ -223,15 +224,15 @@ label {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
-    margin-top: 1rem; /* Add some space above the grid */
+    margin-top: 1rem;
 }
 
 .cared-post-card {
-    background-color: #1c1c1e; /* Adjust the background color as needed */
+    background-color: #1c1c1e; 
     color: white;
     border: none;
     border-radius: 10px;
-    overflow: hidden; /* Ensures content fits within the borders */
+    overflow: hidden; 
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -240,7 +241,7 @@ label {
 
 .cared-post-card img {
     object-fit: cover;
-    height: 200px; /* Set a fixed height or use aspect ratio to control image height */
+    height: 200px; 
     width: 100%;
 }
 
@@ -249,12 +250,12 @@ label {
 }
 
 .cared-post-card .card-title {
-    font-size: 1rem; /* Adjust as needed */
+    font-size: 1rem; 
     margin-bottom: 0.5rem;
 }
 
 .cared-post-card .card-text {
-    font-size: 0.8rem; /* Smaller text for card text */
+    font-size: 0.8rem; 
 }
 
 .cared-post-card .card-footer {
@@ -264,16 +265,14 @@ label {
 }
 
 .cared-post-card .text-muted {
-    font-size: 0.7rem; /* Smaller text for the date */
-    color: #b3b3b3; /* Light grey color for muted text */
+    font-size: 0.7rem; 
+    color: #b3b3b3;
 }
 
 .red-background {
-    background-color: #ff0000; /* Or any red shade you prefer */
-    /* Add other styling as needed to match your Figma design */
+    background-color: #ff0000; 
 }
 
-/* PROFILE PAGE - Sub components end*/
 
 /* HOME PAGE */
 .home-card {
@@ -349,8 +348,22 @@ label {
 
 .three-card-img {
     width: 21rem;
+    height: 11.5rem;
     margin-left: -.75rem;
     margin-top: -.75rem;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
+}
+
+.third-card-img {
+    width: 21rem;
+    height: 12rem;
+    margin-left: -.75rem;
+    margin-top: -.75rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.text-cent {
+    text-align: center;
 }
