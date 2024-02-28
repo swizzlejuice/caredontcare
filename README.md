@@ -1,3 +1,5 @@
 # caredontcare
 
-Created by Clarabelle McKeirnan, Carlos Cura, Athena Le, Stephanie Tsai, and Shelly Zhao
+Created by Clarabelle McKeirnan and Carlos Cura
+
+Designers: Athena Le, Stephanie Tsai, and Shelly Zhao
