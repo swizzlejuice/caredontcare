@@ -79,7 +79,7 @@ export function ProfilePage() {
 const UserInfo = () => {
     // Assuming you have some user data
     const username = "@claro007"; // This would be dynamic in a real app
-    const bio = "Feel free to email me to chat more!"; // Replace with actual bio , We could use this as a convo starter then they can share socials during emailing
+    const bio = "Feel free to add me on insta to chat more!"; // Replace with actual bio , We could use this as a convo starter then they can share socials during emailing
     const socials = "@username"; // Replace with actual bio
 
     console.log(username, bio);
@@ -111,7 +111,15 @@ const UserInfo = () => {
 // };
 
 const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
-    const [hidden, setHidden] = useState(false);
+    const [hiddenCards, setHiddenCards] = useState([]);
+
+    const toggleCardVisibility = (index) => {
+        setHiddenCards(prevHiddenCards => {
+            const updatedHiddenCards = [...prevHiddenCards];
+            updatedHiddenCards[index] = !updatedHiddenCards[index];
+            return updatedHiddenCards;
+        });
+    };
 
     return (
         <>
@@ -122,14 +130,18 @@ const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
                     {postDetails.length > 0 ? (
                         <div className="cared-posts-grid">
                             {postDetails.map((post, index) => (
-                                <Card key={index} className="cared-post-card" style={{ display: hidden ? "none" : "block" }}>
+                                <div>
+                                <Card key={index} className="cared-post-card" style={{ display: hiddenCards[index] ? "none" : "block" }}>
                                     <Card.Img variant="top" src={post.imageUrl || 'img/default-image.png'} />
                                     <Card.Body>
                                         <Card.Title>{post.title}</Card.Title>
                                     </Card.Body>
-                                </Card>   
+                                </Card> 
+                                {!hiddenCards[index] && (
+                                        <button className="hide-btn" onClick={() => toggleCardVisibility(index)}>Undo Care</button>
+                                )}
+                        </div>
                     ))}
-                    <button className="undo-btn" onClick={() => setHidden(!hidden)}>{hidden ? "Redo Care" : "Uncare"}</button>
                     </div>
                     ) : (
                         <p className="text-cent">You haven't cared about any posts yet.</p>

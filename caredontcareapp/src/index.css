@@ -309,6 +309,18 @@ label {
     margin-top: -.75rem;
 }
 
+.hide-btn {
+    text-align: center;
+    font-size: 1rem;
+    padding: .7rem;
+    width: 6.5rem;
+    color: white;
+    background-color: #5C5C5C;
+    border: none;
+    border-radius: .25rem;
+    margin-left: 8.5rem;
+    margin-top: -.75rem;
+}
 
 /* HOME PAGE */
 .home-card {
