@@ -3,8 +3,9 @@ import React, { Component } from 'react'; // Correctly import Component
 import { Link } from 'react-router-dom';
 import { Nav } from './Nav.js';
 import { Card } from 'react-bootstrap';
-import { getDatabase, ref, runTransaction } from "firebase/database";
+import { getDatabase, ref, runTransaction , onValue, off} from "firebase/database";
 import { getAuth } from "firebase/auth";
+
 
 
 class CardOne extends React.Component {
@@ -13,9 +14,13 @@ class CardOne extends React.Component {
     }
     
     render() {
-        const { showDiv } = this.state;
-        const isLiked = this.props.likedPosts.cardOnePostId;
-        
+   
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardOnePostId'] : false;
+
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
+
         return (
             <div>
                 { showDiv && (
@@ -28,7 +33,7 @@ class CardOne extends React.Component {
                             <Card.Text className="card-desc">
                             UW student Amisha Gupta recently reached a preliminary settlement for at least $400,000 with the company that owns U-District apartment complex HERE Seattle, following a class action lawsuit Gupta filed in February 2023. 
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -49,10 +54,11 @@ class CardTwo extends React.Component {
     }
     
     render() {
-        const { showDiv } = this.state
-        const isLiked = this.props.likedPosts.cardTwoPostId;
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardTwoPostId'] : false;
 
-
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
         return (
             <div>
                 { showDiv && (
@@ -66,7 +72,7 @@ class CardTwo extends React.Component {
                             SEATTLE -- When Kalen DeBoer landed the job at Washington two years ago, it seemed like an unheralded transaction.
                             It has turned out to be a shrewd decision by the Huskies. One might say it's been perfect.
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card></Link>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -89,9 +95,11 @@ class CardThree extends React.Component {
     }
 
     render() {
-        const { showDiv } = this.state
-        const isLiked = this.props.likedPosts.cardThreePostId;
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardThreePostId'] : false;
 
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
         return (
             <div>
                 { showDiv && (
@@ -106,7 +114,7 @@ class CardThree extends React.Component {
                             Delays in receiving food orders have left them struggling to meet the growing demand. 
                             The shelves are bare, and the need is urgent. 
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card></Link>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -128,8 +136,11 @@ class CardFour extends React.Component {
     }
 
     render() {
-        const { showDiv } = this.state
-        const isLiked = this.props.likedPosts.cardFourPostId;
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardFourPostId'] : false;
+
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
 
         return (
             <div>
@@ -143,7 +154,7 @@ class CardFour extends React.Component {
                             <Card.Text className="card-desc">
                             It may sound strange, but there’s a sigh of relief over at the University of Washington that the most read story at the UW Daily newspaper this last week has been “Confessions of...
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -165,8 +176,11 @@ class CardFive extends React.Component {
     }
 
     render() {
-        const { showDiv } = this.state
-        const isLiked = this.props.likedPosts.cardFivePostId;
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardFivePostId'] : false;
+
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
 
         return (
             <div>
@@ -181,7 +195,7 @@ class CardFive extends React.Component {
                             Many people believe that technology is just a tool, neither good nor bad. “That's an 
                             old but wrong story that technology is neutral,” said Damian Hodel, a second-year Ph.D. student at the University of Washington’s Information School.
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -196,15 +210,18 @@ class CardFive extends React.Component {
         )
     }
 }
-
+ 
 class CardSix extends React.Component {
     state = {
         showDiv: true
     }
 
     render() {
-        const { showDiv } = this.state
-        const isLiked = this.props.likedPosts.cardSixPostId;
+        const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+        const isLiked = this.props.likedPosts ? this.props.likedPosts['cardSixPostId'] : false;
+
+        // Similarly, ensure likesCount is defined before using it
+        const likesCount = this.props.likesCount || 0;
 
         return (
             <div>
@@ -219,7 +236,7 @@ class CardSix extends React.Component {
                             Screen readers, which convert digital text to audio, can make computers more accessible to many disabled users — 
                             including those who are blind, low vision or dyslexic. Yet slideshow software, such as Microsoft PowerPoint and Google Slides...
                             </Card.Text>
-                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
+                            <Card.Text className="cared-by-num">{this.props.likesCount > 0 ? `Cared by ${this.props.likesCount} people` : 'Not cared yet'}</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -239,15 +256,9 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            notification: '', // State to hold the notification message
-            likedPosts: {
-                cardOnePostId: false,
-                cardTwoPostId: false,
-                cardThreePostId: false,
-                cardFourPostId: false,
-                cardFivePostId: false,
-                cardSixPostId: false
-              }, // Initialize your local likedPosts state here  
+            notification: '',
+            userLikedPosts: {}, // This will hold whether the logged-in user has liked each post
+            likesCounts: {}, // This will hold the likes count for each post
         };
         this.handleCare = this.handleCare.bind(this);
     }
@@ -264,33 +275,95 @@ export class Home extends Component {
             this.showNotification("Please log in to care about posts.");
             return;
         }
-
-        this.setState(prevState => ({
-            likedPosts: {
-              ...prevState.likedPosts,
-              [postId]: !prevState.likedPosts[postId], // Toggle the liked status for the specific postId
-            }
-        }));
-
+    
         const db = getDatabase();
-        const postRef = ref(db, `users/${userId}/likedPosts/${postId}`);
-
-        runTransaction(postRef, (currentValue) => {
+        const userPostRef = ref(db, `users/${userId}/likedPosts/${postId}`);
+        const postLikesRef = ref(db, `posts/${postId}/likesCount`);
+    
+        // Start a transaction on the user's liked post
+        runTransaction(userPostRef, (currentValue) => {
+            // If the post is not currently liked by the user, like it
             if (currentValue === null || currentValue === false) {
-                return true; // If it's not set or false, like the post
+                // Start another transaction to increment the likesCount
+                runTransaction(postLikesRef, (likesCount) => {
+                    // If likesCount does not exist, initialize it to 1
+                    return (likesCount || 0) + 1;
+                });
+    
+                return true;
             } else {
-                return false; // If it's true, unlike the post
+                // Start another transaction to decrement the likesCount
+                runTransaction(postLikesRef, (likesCount) => {
+                    // If unliking the post, decrement the likesCount
+                    return (likesCount || 1) - 1;
+                });
+    
+                return false;
             }
         }).then(() => {
             this.showNotification("Post care status updated.");
+            // Now we update the local state to reflect the change
+            this.setState(prevState => ({
+                likedPosts: {
+                    ...prevState.likedPosts,
+                    [postId]: !prevState.likedPosts[postId]
+                }
+            }));
         }).catch((error) => {
             console.error("Error updating care status:", error);
             this.showNotification("Failed to update care status.");
         });
     }
 
+    componentDidMount() {
+        const db = getDatabase();
+        const auth = getAuth();
+        const userId = auth.currentUser?.uid; // Get the currently logged in user's ID
+    
+        if (userId) {
+            // Listen for changes in the liked posts for the logged-in user
+            const userLikesRef = ref(db, `users/${userId}/likedPosts`);
+            onValue(userLikesRef, (snapshot) => {
+                const userLikesData = snapshot.val() || {}; // Get the value or an empty object if null
+                // Set the state for userLikedPosts with the fetched data
+                this.setState({ userLikedPosts: userLikesData });
+            });
+        }
+    
+        // Listen for changes in the likes count for all posts
+        const postsRef = ref(db, 'posts');
+        onValue(postsRef, (snapshot) => {
+            const postsData = snapshot.val();
+            const newLikedPosts = {};
+            const newLikesCounts = {};
+
+            for (let postId in postsData) {
+                newLikesCounts[postId] = postsData[postId].likesCount ?? 0;
+                newLikedPosts[postId] = false; // Initialize as not liked
+            }
+
+            // Update the state with the new data
+            this.setState({ likedPosts: newLikedPosts, likesCounts: newLikesCounts });
+        });
+    }
+
+    componentWillUnmount() {
+        // Clean up listeners
+        const db = getDatabase();
+        const auth = getAuth();
+        const userId = auth.currentUser?.uid;
+        if (userId) {
+            const userLikesRef = ref(db, `users/${userId}/likedPosts`);
+            off(userLikesRef); // Detach the listener for the user's liked posts
+        }
+        const postsRef = ref(db, 'posts');
+        off(postsRef); // Detach the listener for the like counts of all posts
+    }
+
+
+
     render() {
-        const { notification, likedPosts } = this.state;
+        const { notification, userLikedPosts, likesCounts } = this.state;
 
         return (
             <div>
@@ -300,14 +373,15 @@ export class Home extends Component {
                         {notification}
                     </div>
                 )}
-                <CardOne handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts} />
-                <CardTwo handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
-                <CardThree handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
-                <CardFour handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
-                <CardFive handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
-                <CardSix handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={likedPosts}/>
+                <CardOne handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardOnePostId'] || 0} />
+                <CardTwo handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardTwoPostId'] || 0} />
+                <CardThree handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardThreePostId'] || 0} />
+                <CardFour handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFourPostId'] || 0} />
+                <CardFive handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFivePostId'] || 0} />
+                <CardSix handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardSixPostId'] || 0} />
                 <div className="home-padding"></div>
             </div>
         );
     }
 }
+

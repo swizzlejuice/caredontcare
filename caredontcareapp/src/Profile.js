@@ -79,7 +79,7 @@ export function ProfilePage() {
 const UserInfo = () => {
     // Assuming you have some user data
     const username = "@claro007"; // This would be dynamic in a real app
-    const bio = "Feel free to add me on insta to chat more!"; // Replace with actual bio
+    const bio = "Feel free to email me to chat more!"; // Replace with actual bio , We could use this as a convo starter then they can share socials during emailing
     const socials = "@username"; // Replace with actual bio
 
     console.log(username, bio);
