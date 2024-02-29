@@ -34,6 +34,36 @@ export function KalenDeboer() {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+                <div>
+                <Card className="comment-card" style={{ width: '21rem'}}>
+                    <Card.Body className="cards-text">
+                        <Card.Title className="card-title">3 comments</Card.Title>
+                        <Card.Text className="card-desc">
+                            <Card.Body className="write-comment">
+                                <Card.Title className="comt">Write something...</Card.Title>
+                            </Card.Body>
+                            <Card.Body className="comments-card">
+                                <Card.Title className="comment-user">@athenale</Card.Title>
+                                <Card.Text className="comment-desc"> woohoo!
+                                </Card.Text>
+                                <Card.Subtitle className="reply">Reply</Card.Subtitle>
+                            </Card.Body>
+                            <Card.Body className="comments-card">
+                                <Card.Title className="comment-user">@shellyzhao</Card.Title>
+                                <Card.Text className="comment-desc"> 🙌
+                                </Card.Text>
+                                <Card.Subtitle className="reply">Reply</Card.Subtitle>
+                            </Card.Body>
+                            <Card.Body className="comments-card">
+                                <Card.Title className="comment-user">@stetsai</Card.Title>
+                                <Card.Text className="comment-desc"> go dawgs!!!
+                                </Card.Text>
+                                <Card.Subtitle className="reply">Reply</Card.Subtitle>
+                            </Card.Body>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </div>
                 <div className="home-padding"></div>
             </div>
         </body>

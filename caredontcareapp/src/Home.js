@@ -28,6 +28,7 @@ class CardOne extends React.Component {
                             <Card.Text className="card-desc">
                             UW student Amisha Gupta recently reached a preliminary settlement for at least $400,000 with the company that owns U-District apartment complex HERE Seattle, following a class action lawsuit Gupta filed in February 2023. 
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -65,6 +66,7 @@ class CardTwo extends React.Component {
                             SEATTLE -- When Kalen DeBoer landed the job at Washington two years ago, it seemed like an unheralded transaction.
                             It has turned out to be a shrewd decision by the Huskies. One might say it's been perfect.
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card></Link>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -104,6 +106,7 @@ class CardThree extends React.Component {
                             Delays in receiving food orders have left them struggling to meet the growing demand. 
                             The shelves are bare, and the need is urgent. 
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card></Link>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -140,6 +143,7 @@ class CardFour extends React.Component {
                             <Card.Text className="card-desc">
                             It may sound strange, but there’s a sigh of relief over at the University of Washington that the most read story at the UW Daily newspaper this last week has been “Confessions of...
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -177,6 +181,7 @@ class CardFive extends React.Component {
                             Many people believe that technology is just a tool, neither good nor bad. “That's an 
                             old but wrong story that technology is neutral,” said Damian Hodel, a second-year Ph.D. student at the University of Washington’s Information School.
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
@@ -214,6 +219,7 @@ class CardSix extends React.Component {
                             Screen readers, which convert digital text to audio, can make computers more accessible to many disabled users — 
                             including those who are blind, low vision or dyslexic. Yet slideshow software, such as Microsoft PowerPoint and Google Slides...
                             </Card.Text>
+                            <Card.Text className="cared-by-num">Cared by 5 people</Card.Text>
                         </Card.Body>
                     </Card>
                     <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>

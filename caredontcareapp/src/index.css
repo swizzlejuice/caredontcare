@@ -11,8 +11,16 @@ body {
 .header-h {
     font-size: 1.2rem;
     color: white;
-    margin-top: 1.65rem;
+    margin-top: 1.8rem;
     margin-left: .5rem;
+}
+
+nav {
+    position: fixed;
+    margin-top: -.55rem;
+    background-color: black;
+    height: 85px;
+    width: 100%;
 }
 
 header {
@@ -115,11 +123,24 @@ label {
 }
 
 .bio {
-    font-size: 1rem; 
-    margin-bottom: 1rem;
+    font-size: .9rem; 
     color: white;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
+    margin-top: 0.75rem;
+}
+
+.socials {
+    font-size: .9rem; 
+    color: white;
+    margin-bottom: .5rem;
+    margin-top: -1.55rem;
+    margin-left: 10.2rem;
+}
+
+.social-link {
+    margin-left: 8.2rem;
+    width: 25px;
 }
 
 .edit-profile-button {
@@ -228,8 +249,8 @@ label {
 }
 
 .cared-post-card {
-    background-color: #1c1c1e; 
-    color: white;
+    background-color: white; 
+    color: black;
     border: none;
     border-radius: 10px;
     overflow: hidden; 
@@ -237,6 +258,8 @@ label {
     flex-direction: column;
     height: 100%;
     margin-left: 2.75rem;
+    width: 18rem;
+    height: 16rem;
 }
 
 .cared-post-card img {
@@ -271,6 +294,19 @@ label {
 
 .red-background {
     background-color: #ff0000; 
+}
+
+.undo-btn {
+    text-align: center;
+    font-size: 1rem;
+    padding: .7rem;
+    width: 6.5rem;
+    color: white;
+    background-color: #5C5C5C;
+    border: none;
+    border-radius: .25rem;
+    margin-left: 8.65rem;
+    margin-top: -.75rem;
 }
 
 
@@ -366,4 +402,69 @@ label {
 
 .text-cent {
     text-align: center;
+}
+
+.cared-by-num {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.comment-card {
+    background-color: black;
+    color: white;
+    margin-left: .65rem;
+    border-radius: .5rem;
+    margin-top: 1.5rem;
+    border: 1.5px solid white;
+}
+
+.comments-card {
+    background-color: black;
+    color: white;
+    margin-left: 0rem;
+    border-radius: .5rem;
+    margin-top: 1.5rem;
+    border: 1px solid white;
+}
+
+.comment-user {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 500;
+    margin-left: 1rem;
+    margin-top: .6rem;
+}
+
+.comment-desc {
+    font-size: .8rem;
+    color: white;
+    font-weight: 400;
+    margin-left: 1.2rem;
+    margin-top: .4rem;
+}
+
+.write-comment {
+    background-color: white;
+    color: black;
+    margin-left: 0rem;
+    border-radius: .5rem;
+    margin-top: 1.5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    border: 1px solid white;
+}
+
+.comt {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.reply {
+    margin-left: 1.2rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding-top: .25rem;
+    margin-bottom: .75rem;
 }

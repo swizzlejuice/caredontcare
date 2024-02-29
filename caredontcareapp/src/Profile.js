@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { getDatabase, ref, get, onValue } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import './index.css'; 
 
@@ -78,7 +79,8 @@ export function ProfilePage() {
 const UserInfo = () => {
     // Assuming you have some user data
     const username = "@claro007"; // This would be dynamic in a real app
-    const bio = "Info major 2024"; // Replace with actual bio
+    const bio = "Feel free to add me on insta to chat more!"; // Replace with actual bio
+    const socials = "@username"; // Replace with actual bio
 
     console.log(username, bio);
 
@@ -86,7 +88,9 @@ const UserInfo = () => {
         <div className="text-center my-4">
             <img className="prof-img" src="img/woman.png" alt="profile icon"/>
             <h3 className="username">{username}<Button variant="primary" className="edit-profile-button">Edit Profile</Button></h3> {/* Removed the "@" since it's already part of the username */}
-            {/* <p className="bio">{bio}</p> */}
+            <p className="bio">{bio}</p>
+            <img className="social-link" src="img/ig.png" alt="social icon"/>
+            <p className="socials">{socials}</p>
         </div>
     );
 };
@@ -107,28 +111,26 @@ const UserInfo = () => {
 // };
 
 const CaredByMe = ({ showModal, setShowModal, postDetails }) => {
+    const [hidden, setHidden] = useState(false);
+
     return (
         <>
             <Modal show={showModal} onHide={() => setShowModal(false)} size="lg">
                 <Modal.Header closeButton className='cared-by-me-btn'>
-                    {/* <Modal.Title>Cared by me</Modal.Title> */}
                 </Modal.Header>
                 <Modal.Body>
                     {postDetails.length > 0 ? (
                         <div className="cared-posts-grid">
                             {postDetails.map((post, index) => (
-                                <Card key={index} className="cared-post-card" style={{ width: '18rem', height: '16rem'}}>
+                                <Card key={index} className="cared-post-card" style={{ display: hidden ? "none" : "block" }}>
                                     <Card.Img variant="top" src={post.imageUrl || 'img/default-image.png'} />
                                     <Card.Body>
                                         <Card.Title>{post.title}</Card.Title>
-                                        {/* <Card.Text>{post.description}</Card.Text> */}
                                     </Card.Body>
-                                    {/* <Card.Footer>
-                                        <small className="text-muted">Cared on {post.subtitle.split(' | ')[1]}</small>
-                                    </Card.Footer> */}
-                                </Card>
-                            ))}
-                        </div>
+                                </Card>   
+                    ))}
+                    <button className="undo-btn" onClick={() => setHidden(!hidden)}>{hidden ? "Redo Care" : "Uncare"}</button>
+                    </div>
                     ) : (
                         <p className="text-cent">You haven't cared about any posts yet.</p>
                     )}
