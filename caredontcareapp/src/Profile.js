@@ -1,6 +1,6 @@
 import { Nav } from './Nav.js';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { getDatabase, ref, get, onValue } from "firebase/database";
+import { getDatabase, ref, get } from "firebase/database";
 import { getAuth } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
