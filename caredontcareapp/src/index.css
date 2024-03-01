@@ -336,7 +336,7 @@ label {
 }
 
 .card-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
@@ -440,7 +440,7 @@ label {
 }
 
 .comment-user {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: white;
     font-weight: 500;
     margin-left: 1rem;
@@ -448,35 +448,42 @@ label {
 }
 
 .comment-desc {
-    font-size: .8rem;
+    font-size: 1rem;
     color: white;
     font-weight: 400;
     margin-left: 1.2rem;
     margin-top: .4rem;
 }
 
-.write-comment {
-    background-color: white;
-    color: black;
-    margin-left: 0rem;
-    border-radius: .5rem;
-    margin-top: 1.5rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    padding-left: 1rem;
+.add-com {
+    padding: .75rem;
+    font-size: 1rem;
+    font-family: "Raleway", sans-serif;
+    border-radius: 8.5px;
+    margin-left: -.85rem;
+    margin-right: 1rem;
+    width: 12rem;
     border: 1px solid white;
 }
 
-.comt {
-    font-weight: 400;
+.sub-com {
+    padding: .75rem;
     font-size: 1rem;
+    font-family: "Raleway", sans-serif;
+    border-radius: 8.5px;
+    background-color: white;
+    border: 1px solid white;
 }
 
-.reply {
-    margin-left: 1.2rem;
+.remove-com {
+    padding: .5rem;
+    font-size: .8rem;
+    border-radius: 8px;
+    margin-left: 5.5rem;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+    width: 8.5rem;
+    border: 1px solid #5C5C5C;
+    background-color: #5C5C5C;
     color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    padding-top: .25rem;
-    margin-bottom: .75rem;
 }

@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from './Nav.js';
 import { Card } from 'react-bootstrap';
 
 export function HumaneSociety() {
+    const [comments, setComments] = useState([]);
+
+     const addComment = (comment) => {
+         setComments([...comments, comment]);
+     };
+
+     const removeComment = (index) => {
+        const updatedComments = [...comments];
+        updatedComments.splice(index, 1);
+        setComments(updatedComments);
+    };
+
     return (
         <body>
             <div>
@@ -34,17 +46,26 @@ export function HumaneSociety() {
                 <div>
                 <Card className="comment-card" style={{ width: '21rem'}}>
                     <Card.Body className="cards-text">
-                        <Card.Title className="card-title">1 comment</Card.Title>
+                        <Card.Title className="card-title">Total Comments: {comments.length}</Card.Title>
                         <Card.Text className="card-desc">
-                            <Card.Body className="write-comment">
-                                <Card.Title className="comt">Write something...</Card.Title>
+                        <Card.Body className="cards-text">
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                const newComment = e.target.elements.comment.value;
+                                addComment(newComment);
+                                e.target.reset();
+                            }}>
+                                <input className="add-com" type="text" name="comment" placeholder="Add a comment..." />
+                                <button className="sub-com" type="submit">Submit</button>
+                            </form>
+                        </Card.Body>
+                        {comments.map((comment, index) => (
+                            <Card.Body key={index} className="comments-card">
+                                <Card.Title className="comment-user">@claro007</Card.Title>
+                                <Card.Text className="comment-desc">{comment}</Card.Text>
+                                <button className="remove-com" onClick={() => removeComment(index)}>Delete Comment</button>
                             </Card.Body>
-                            <Card.Body className="comments-card">
-                                <Card.Title className="comment-user">@athenale</Card.Title>
-                                <Card.Text className="comment-desc">good info!
-                                </Card.Text>
-                                <Card.Subtitle className="reply">Reply</Card.Subtitle>
-                            </Card.Body>
+                            ))}
                         </Card.Text>
                     </Card.Body>
                 </Card>
