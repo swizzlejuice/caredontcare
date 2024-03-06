@@ -6,7 +6,229 @@ import { Card } from 'react-bootstrap';
 import { getDatabase, ref, runTransaction , onValue, off} from "firebase/database";
 import { getAuth } from "firebase/auth";
 
+class NewCardPost1 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardOnePostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/seahawks.png" />
+                                <Card.Title className="card-title">What Stands out after Seattle Seahawks' 3 Big Cuts</Card.Title>
+                                <Card.Subtitle className="card-sub">Seattle Sports | 03/05/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                Seattle Sports’ Bump and Stacy weighed in live on the air when news broke Tuesday that the Seahawks would cut three notable players ahead of the new NFL league year starting next week.
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 16 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
 
+    class NewCardPost2 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardTwoPostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/lawenfor.jpg" />
+                                <Card.Title className="card-title">Some Law Enforcement Agencies say they won't change Pursuit Policies after new Initiative goes into Effect</Card.Title>
+                                <Card.Subtitle className="card-sub">King 5 News | 03/04/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                OLYMPIA, Wash. — Thurston County Sheriff Derek Sanders said it has been a frustrating two years for law enforcement. He is eager to allow his deputies to chase after criminals again as long as it is deemed safe.
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 4 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardTwoPostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
+
+    class NewCardPost3 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardOnePostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/crash.png" />
+                                <Card.Title className="card-title">Pilot, Passenger Uninjured after small Plane Crash in Bellevue</Card.Title>
+                                <Card.Subtitle className="card-sub">Komo News | 03/04/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                BELLEVUE, Wash. — The pilot and passenger of a plane were thankfully uninjured after their plane crashed in Bellevue Tuesday afternoon.
+                                Bellevue Police Department (BPD) posted about the crash...
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 3 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
+
+    class NewCardPost4 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardOnePostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/upzone.png" />
+                                <Card.Title className="card-title">Seattle Mayor releases Draft Plan to Upzone for Housing across City</Card.Title>
+                                <Card.Subtitle className="card-sub">KOMO News | 03/01/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                SEATTLE — Mayor Bruce Harrell on Tuesday released a draft of a new plan to “expand the supply and diversity of housing” in Seattle to accommodate the city’s growth in the next decades.
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 8 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
+
+    class NewCardPost5 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardOnePostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/basket.png" />
+                                <Card.Title className="card-title">UW set to break ground on new Home for Husky Basketball</Card.Title>
+                                <Card.Subtitle className="card-sub">UW News | 02/29/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                SEATTLE -- The University of Washington, with partners Mortenson and Gensler, will break ground on its new high-performance basketball center this June.
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 11 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
+
+    class NewCardPost6 extends Component {
+        state = {
+            showDiv: true
+        }
+        
+        render() {
+       
+            const { showDiv } = this.state; // Destructure showDiv from state to use it in the JSX.
+            const isLiked = this.props.likedPosts ? this.props.likedPosts['newCardOnePostId'] : false;
+    
+            return (
+                <div>
+                    { showDiv && (
+                        <div>
+                        <Card className="home-card" style={{ width: '21rem'}}>
+                            <Card.Body className="cards-text">
+                            <Card.Img className="three-card-img" variant="top" src="img/uwgrad.png" />
+                                <Card.Title className="card-title">UW Grad receives prestigious Gates Cambridge Scholarship</Card.Title>
+                                <Card.Subtitle className="card-sub">UW News | 02/28/2024</Card.Subtitle>
+                                <Card.Text className="card-desc">
+                                Sonia Fereidooni, who earned bachelor’s and master’s degrees from the University of Washington, was selected for the prestigious Gates Cambridge Scholarship.
+                                Fereidooni, 22, will receive a full-cost scholarship to...
+                                </Card.Text>
+                                <Card.Text className="cared-by-num">Cared by 6 people</Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <button className="dc-btn" onClick={() => this.setState({ showDiv: !showDiv })}>
+                            { showDiv ? "Don't Care" : "Undo" }
+                        </button>
+                        {/* Connect this button to the handleCare function */}
+                        <button className="c-btn" onClick={() => this.props.handleCare("cardOnePostId")}>{isLiked ? 'Cared' : 'Care'} </button>
+                        </div>
+                    )}
+                </div>  
+            )
+        }
+    }
 
 class CardOne extends React.Component {
     state = {
@@ -253,14 +475,20 @@ class CardSix extends React.Component {
 }
 
 export class Home extends Component {
+    handleShowNewPosts = () => {
+        this.setState({ showNewPosts: true });
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             notification: '',
             userLikedPosts: {}, // This will hold whether the logged-in user has liked each post
             likesCounts: {}, // This will hold the likes count for each post
+            showNewPosts: false
         };
         this.handleCare = this.handleCare.bind(this);
+        this.handleShowNewPosts = this.handleShowNewPosts.bind(this);
     }
 
     // Method to show notification
@@ -363,7 +591,7 @@ export class Home extends Component {
 
 
     render() {
-        const { notification, userLikedPosts, likesCounts } = this.state;
+        const { notification, userLikedPosts, likesCounts, showNewPosts } = this.state;
 
         return (
             <div>
@@ -373,12 +601,32 @@ export class Home extends Component {
                         {notification}
                     </div>
                 )}
-                <CardOne handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardOnePostId'] || 0} />
-                <CardTwo handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardTwoPostId'] || 0} />
-                <CardThree handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardThreePostId'] || 0} />
-                <CardFour handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFourPostId'] || 0} />
-                <CardFive handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFivePostId'] || 0} />
-                <CardSix handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardSixPostId'] || 0} />
+
+               {!showNewPosts && (
+                    <>
+                        <CardOne handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardOnePostId'] || 0} />
+                        <CardTwo handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardTwoPostId'] || 0} />
+                        <CardThree handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardThreePostId'] || 0} />
+                        <CardFour handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFourPostId'] || 0} />
+                        <CardFive handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardFivePostId'] || 0} />
+                        <CardSix handleCare={this.handleCare} showNotification={this.showNotification} likedPosts={userLikedPosts} likesCount={likesCounts['cardSixPostId'] || 0} />
+                    </>
+                )}
+
+                {/* Conditionally render new posts based on showNewPosts */}
+                {showNewPosts && (
+                    <>
+                        <NewCardPost1 />
+                        <NewCardPost2 />
+                        <NewCardPost3 />
+                        <NewCardPost4 />
+                        <NewCardPost5 />
+                        <NewCardPost6 />
+                    </>
+                )}
+
+                {/* Button to show new posts */}
+                <button className="new-post-btn" onClick={this.handleShowNewPosts}>Generate New Posts</button>
                 <div className="home-padding"></div>
             </div>
         );
